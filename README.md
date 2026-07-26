@@ -1,132 +1,147 @@
 <div align="center">
 
-<img src="public/img/logo.svg" alt="GuitarLA Logo" width="320" />
+<img src="public/img/logo.svg" alt="GuitarLA Logo" width="300" />
 
-# GuitarLA — Tienda de Guitarras
+# GuitarLA — Tienda Premium de Guitarras
 
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite)](https://vite.dev/)
-[![pnpm](https://img.shields.io/badge/pnpm-11.11-F69220?logo=pnpm)](https://pnpm.io/)
-[![ESLint](https://img.shields.io/badge/ESLint-9-4B32C3?logo=eslint)](https://eslint.org/)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap)](https://getbootstrap.com/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
+[![pnpm](https://img.shields.io/badge/pnpm-11.11-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
+[![ESLint](https://img.shields.io/badge/ESLint-9-4B32C3?logo=eslint&logoColor=white)](https://eslint.org/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+
+*Instrumentos artesanales con diseño y sonido excepcional*
 
 </div>
 
 ---
 
+## ✨ Novedades — v2.0
+
+| Área | v1.0 | v2.0 |
+|---|---|---|
+| **Estado** | `useState` + `useCart` hook | `useReducer` con `CartReducer` — acciones tipadas |
+| **UI/UX** | Bootstrap plano, tarjetas genéricas | Diseño premium, paleta ámbar sobre crema, tipografía Outfit + Inter |
+| **Carrito** | Dropdown anclado al header (hover) | Burbuja flotante FAB + panel lateral deslizante (click) |
+| **Animaciones** | Una sola en el header | Cascada staggered en cards, fadeUp suave, guitarra lateral animada |
+| **Logo** | Reducido dentro del header | Grande y centrado como identidad principal |
+| **Footer** | Texto genérico | Crédito destacado a **GusDev** con acento ámbar |
+| **Gestor** | npm | pnpm (más rápido, seguro, lockfile verificable) |
+
+---
+
 ## Sobre el proyecto
 
-**GuitarLA** es una aplicación web SPA para la venta de guitarras, construida como proyecto de aprendizaje para dominar **TypeScript** en el ecosistema de **React**. Combina tipado estático avanzado con una interfaz moderna y funcional, ofreciendo un carrito de compras completamente interactivo con persistencia en el navegador.
+**GuitarLA** es una SPA e-commerce de guitarras construida como proyecto de dominio de **TypeScript + React**. Evolucionó de un hook personalizado con `useState` hacia una arquitectura con **`useReducer`** y acciones discriminadas, logrando una gestión de estado predecible, escalable y completamente tipada.
 
-### Demostración de conceptos TypeScript
+### TypeScript en profundidad
 
 - Herencia de tipos (`CartItem extends Guitar`)
-- Utility types (`Pick`, `Omit`, `Lookup Types`)
+- Utility types (`Pick`, `Omit`, Lookup Types)
+- Discriminated unions para acciones del reducer
 - `useMemo` para estado derivado tipado
-- Tipado estricto de hooks personalizados
 - Non-null assertion operator
 
 ---
 
 ## Características
 
-- Catálogo de 12 guitarras con imagen, descripción y precio
-- Carrito de compras con control de cantidad (mín. 1, máx. 5 unidades)
-- Persistencia del carrito en `localStorage`
-- Cálculo automático del total a pagar
-- Operaciones CRUD completas sobre el carrito (agregar, incrementar, decrementar, eliminar, vaciar)
-- Interfaz responsive con Bootstrap 5
-- Código completamente tipado con TypeScript
+- 12 guitarras con imagen, descripción y precio
+- Carrito con control de cantidad (mín. 1, máx. 5)
+- Persistencia en `localStorage`
+- Total automático, operaciones CRUD completas
+- **Burbuja flotante** con badge contador y panel lateral
+- Animaciones CSS staggered (sin librerías externas)
+- Completamente responsive (Bootstrap 5 grid + custom CSS)
+- Código 100% tipado con TypeScript strict
 
 ---
 
 ## Tecnologías
 
-| Tecnología | Versión | Uso |
-|---|---|---|
-| React | ^19.2 | Biblioteca de interfaces |
-| TypeScript | ~5.9 | Tipado estático |
-| Vite | ^7.2 | Bundler y dev server |
-| SWC | — | Compilación rápida vía plugin Vite |
-| Bootstrap | 5.x | Estilos (CDN) |
-| ESLint | ^9.39 | Linting |
+| Tecnología | Uso |
+|---|---|
+| **React 19** | Biblioteca de interfaces |
+| **TypeScript 5.9** | Tipado estático avanzado |
+| **Vite 7** | Bundler + dev server con HMR |
+| **SWC** | Compilación rápida |
+| **Bootstrap 5.3** | Grid system (CDN) |
+| **pnpm** | Gestor de paquetes |
+| **ESLint 9** | Linting |
 
 ---
 
-## Estructura del proyecto
+## Estructura
 
 ```
 src/
-├── components/        # Componentes React
-│   ├── Guitar.tsx     # Tarjeta de producto individual
-│   └── Header.tsx     # Header con logo y carrito desplegable
+├── components/
+│   ├── Guitar.tsx        # Tarjeta de producto con animaciones
+│   ├── Header.tsx        # Banner hero con logo y guitarra decorativa
+│   └── CartFloating.tsx  # Burbuja flotante + panel lateral del carrito
+├── reducers/
+│   └── cart-reducer.ts   # useReducer con acciones tipadas (Discriminated Union)
 ├── data/
-│   └── db.ts          # Datos del catálogo de guitarras
-├── hooks/
-│   └── useCart.ts     # Hook personalizado con toda la lógica del carrito
+│   └── db.ts             # Catálogo de 12 guitarras
 ├── types/
-│   └── index.ts       # Definiciones de tipos (Guitar, CartItem)
-├── App.tsx            # Componente raíz
-├── main.tsx           # Punto de entrada
-└── index.css          # Estilos globales
+│   └── index.ts          # Tipos Guitar, CartItem, GuitarID
+├── App.tsx
+├── main.tsx
+└── index.css             # Design system completo con tokens CSS
+```
+
+---
+
+## Arquitectura del estado
+
+```ts
+// Acciones tipadas con Discriminated Union
+type CartActions =
+  | { type: 'add-to-cart',      payload: { item: Guitar } }
+  | { type: 'remove-from-cart', payload: { id: Guitar['id'] } }
+  | { type: 'decrease-quantity', payload: { id: Guitar['id'] } }
+  | { type: 'increase-quantity', payload: { id: Guitar['id'] } }
+  | { type: 'clear-cart' }
+
+// El reducer maneja toda la lógica del carrito
+// Los componentes solo disparan acciones: dispatch({ type: 'add-to-cart', payload: { item } })
 ```
 
 ---
 
 ## Primeros pasos
 
-### Requisitos previos
-
-- **Node.js** ≥ 18
-- **pnpm** (gestor de paquetes)
-
 ```bash
-# Verificar instalación
-node --version
-pnpm --version
-```
-
-### Instalación
-
-```bash
-# Clonar el repositorio
-git clone <url-del-repo>
+# Clonar
+git clone <repo-url>
 cd Guitarla-TS
 
 # Instalar dependencias
 pnpm install
-```
 
-### Scripts disponibles
+# Dev server → http://localhost:5173
+pnpm dev
 
-| Comando | Descripción |
-|---|---|
-| `pnpm dev` | Inicia el servidor de desarrollo con HMR |
-| `pnpm build` | Compila TypeScript y genera el build de producción |
-| `pnpm preview` | Previsualiza la build de producción localmente |
-| `pnpm lint` | Ejecuta ESLint sobre el código fuente |
+# Build producción
+pnpm build
 
-```bash
-pnpm dev       # → http://localhost:5173
-```
-
-### Build de producción
-
-```bash
-pnpm build     # Salida en dist/
-pnpm preview   # Previsualizar build
+# Lint
+pnpm lint
 ```
 
 ---
 
-## Licencia
-
-Proyecto desarrollado con fines educativos. Todos los derechos reservados © GuitarLA.
-
----
+## Créditos
 
 <div align="center">
-  <sub>Built with ♥ using React + TypeScript + Vite</sub>
+
+**Diseño UI/UX por GusDev**
+
+Paleta · Tipografía · Animaciones · Component System · Cart UX
+
+---
+
+<sub>Built with React + TypeScript + Vite</sub>
+
 </div>
-# GuitarLA-GusDev-Version
