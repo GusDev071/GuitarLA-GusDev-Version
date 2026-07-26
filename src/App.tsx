@@ -1,6 +1,7 @@
 import { useReducer, useEffect } from "react"
 import Guitar from "./components/Guitar"
 import Header from "./components/Header"
+import CartFloating from "./components/CartFloating"
 import { CartReducer, initialState } from "./reducers/cart-reducer"
 
 function App() {
@@ -17,15 +18,18 @@ function App() {
 
   return (
     <>
-    <Header 
+    <Header />
+    
+    <CartFloating 
       cart={state.cart}
       dispatch={dispatch}
     />
     
-    <main className="container-xl mt-5">
-        <h2 className="text-center">Nuestra Colección</h2>
+    <main className="container-xl" id="catalogo">
+        <h2 className="section-title">Nuestra Colección</h2>
+        <p className="section-subtitle">12 guitarras artesanales para cada estilo y personalidad</p>
 
-        <div className="row mt-5">
+        <div className="row">
             {state.data.map((guitar) => (
                 <Guitar 
                   key={guitar.id}
@@ -36,10 +40,12 @@ function App() {
         </div>
     </main>
 
-
-    <footer className="bg-dark mt-5 py-5">
-        <div className="container-xl">
-            <p className="text-white text-center fs-4 mt-4 m-md-0">GuitarLA - Todos los derechos Reservados</p>
+    <footer className="site-footer">
+        <div className="container-xl text-center">
+            <p className="footer-brand">GuitarLA</p>
+            <p className="footer-copy">
+                Diseño por <strong>GusDev</strong> — Todos los derechos reservados &copy; {new Date().getFullYear()}
+            </p>
         </div>
     </footer>
     </>
